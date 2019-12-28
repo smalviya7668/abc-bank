@@ -1,0 +1,161 @@
+<div class="container-fluid">
+
+  <!-- <div class="row available">
+
+    <div class="col-12  mt-3 mb-3">
+      <mat-card class="p-5 mat-card ">
+        <div class="row">
+          <div class="col-sm lead">Name : <strong>{{dataList.user_fname}}&nbsp;{{dataList.user_fname}}</strong></div>
+          <div class="col-sm lead">Email : <strong>{{dataList.email_address}}</strong></div>
+          <div class="col-sm lead">Secondary email : <strong>{{dataList.secondary_number}}</strong></div>
+          <div class="col-sm lead">Mobile Number : <strong>{{dataList.mobile_number}}</strong></div>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+
+  <div class="row available">
+    <div class="col-12  mt-3 mb-3">
+      <mat-card class="p-5 mat-card ">
+        <div class="row">
+          <div class="col-sm lead">Address : <strong>{{dataList.address}}</strong></div>
+          <div class="col-sm lead">Primary Contact : <strong>{{dataList.mobile_number}}</strong></div>
+        </div>
+      </mat-card>
+    </div>
+    
+  </div> -->
+  <br>
+  <div class="row">
+    <div class="col-md-5">
+      <h2>Welcome <strong>{{dataList.user_fname}}&nbsp;{{dataList.user_lname}}</strong></h2>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+  <br>
+  <div class="row available">
+    <div class="col-sm-4">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>User Information</mat-card-title>
+        </mat-card-header>
+        <mat-spinner *ngIf="dataList.length == 0" class="mx-auto" style="width: 200px;"></mat-spinner>
+        <mat-card-content>
+          <span>Name : <strong>{{dataList.user_fname}}&nbsp;{{dataList.user_lname}}</strong></span><br>
+          <span>Email : <strong>{{dataList.email_address}}</strong></span><br>
+          <span>Secondary email : <strong>{{dataList.secondary_number}}</strong></span><br>
+          <span>Mobile Number : <strong>{{dataList.mobile_number}}</strong></span><br>
+          <span>Address : <strong>{{dataList.address}}</strong></span><br>
+          <span>Primary Contact : <strong>{{dataList.mobile_number}}</strong></span>
+        </mat-card-content>
+        <div class="mx-auto" style="width: 200px;">
+          <button  mat-button (click)="openUpdateDialog()">Update User details</button>
+        </div>
+      </mat-card>
+
+
+    </div>
+    <div class="col-sm-4">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Account Details</mat-card-title>
+        </mat-card-header>
+        <mat-spinner *ngIf="accontDeatils.length == 0" class="mx-auto" style="width: 200px;"></mat-spinner>
+        <mat-card-content *ngIf="accontDeatils">
+
+          <span><strong>Account no:&nbsp;</strong>{{accontDeatils.account_number}}</span><br>
+          <span><strong>Account Type:&nbsp;</strong>{{accontDeatils.account_type}}</span><br>
+          <span><strong>Total Balance:&nbsp;</strong>{{accontDeatils.account_balance | currency}}</span><br>
+          <span><strong>Creation Date:&nbsp;</strong>{{accontDeatils.account_creation | date}}</span><br>
+          <span><strong>Make a  Transaction:&nbsp;</strong><button mat-stroked-button (click)="openTransactionDialog()">click here</button></span><br><br>
+          <span><strong>Initiate Fund Transfer:&nbsp;</strong><button mat-stroked-button (click)="openTransactionDialog()">click here</button></span>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="mx-auto" style="width: 200px;">
+            <button  mat-button (click)="openDialog()">View Transaction details</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="col-sm-4">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Account Details</mat-card-title>
+        </mat-card-header>
+        <mat-spinner *ngIf="accontDeatils.length == 0" class="mx-auto" style="width: 200px;"></mat-spinner>
+        <mat-card-content *ngIf="accontDeatils">
+
+          <span><strong>Account no:&nbsp;</strong>{{accontDeatils.account_number}}</span><br>
+          <span><strong>Account Type:&nbsp;</strong>{{accontDeatils.account_type}}</span><br>
+          <span><strong>Total Balance:&nbsp;</strong>{{accontDeatils.account_balance | currency}}</span><br>
+          <span><strong>Creation Date:&nbsp;</strong>{{accontDeatils.account_creation | date}}</span><br>
+          <span><strong>Make a  Transaction:&nbsp;</strong><button mat-stroked-button (click)="openTransactionDialog()">click here</button></span><br><br>
+          <span><strong>Initiate Fund Transfer:&nbsp;</strong><button mat-stroked-button (click)="openTransactionDialog()">click here</button></span>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="mx-auto" style="width: 200px;">
+            <button  mat-button (click)="openDialog()">View Transaction details</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
+  </div>
+<br>
+  <div class="row">
+    <div class="col-sm-6">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Fixed Deposit Details</mat-card-title>
+        </mat-card-header>
+        <mat-spinner *ngIf="showFdSpinner" class="mx-auto" style="width: 200px;"></mat-spinner>
+        <div *ngIf="fixedDepositDetails.length == 0">No Fixed deposits found!!</div>
+        <mat-card-content>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let data of fixedDepositDetails">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Amount: {{data.amount | currency}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Click here for details
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Interest(%)</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{data.interest}}</td>
+                    <td>{{data.startDate | date}}</td>
+                    <td>{{data.endate | date}}</td>
+                    <td>{{data.fixedDeposit_status}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+            </mat-expansion-panel>
+
+          </mat-accordion>
+
+        </mat-card-content>
+
+      </mat-card>
+    
+  </div>
+  </div>
+</div>

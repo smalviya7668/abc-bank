@@ -1,0 +1,64 @@
+<app-header></app-header>
+
+<mat-sidenav-container id="container" fullscreen>
+  <mat-sidenav *ngIf="isLoggedIn" style="background-color: black;width: 200px;" mode="side" opened>
+    Sidenav content
+    <div class="profile-photo-small">
+      <img src="./assets/img/faces/images.png" (click)="toggle()" alt="Circle Image" class="rounded-circle img-fluid">
+    </div>
+    <div style="display: block;padding:10px 0;text-align:center">
+      <h5 style="margin: 0;padding:0;font-weight:200;font-size: 16px;color: white;">{{userName}}</h5>
+      <h4 style="margin: 0;padding:0;font-weight:500;color: green;word-wrap: break-word;">{{email}}</h4>
+      <p style="margin: 0;padding:0;font-weight:400;font-size: 12px;color: green;word-wrap: none;">{{mobile}}</p>
+    </div>
+
+    <mat-divider style="color: white;"></mat-divider>
+
+
+    <!-- <nav mat-tab-nav-bar style="background: white;border-bottom: none;">
+      <a mat-tab-link routerLink="admin" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+          <mat-icon>outlined_flag</mat-icon> Admin
+      </a>
+    </nav> -->
+
+    <mat-nav-list>
+      <a style="color: white;" mat-list-item routerLink="">
+        <mat-icon>home</mat-icon> Home
+      </a>
+      <!-- <a style="color: white;" mat-list-item routerLink="admin">
+        <mat-icon>outlined_flag</mat-icon> Admin
+      </a> -->
+     
+     <span *ngIf="isAdmin">
+      <button  style="color: white;" mat-button [matMenuTriggerFor]="menu"><mat-icon>outlined_flag</mat-icon>Admin</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="route()">Open New Account</button>
+        <button mat-menu-item (click)="routeFd()">Open new Fixed Deposit</button>
+        <button mat-menu-item (click)="routeSearch()">Global Search</button>
+        <button mat-menu-item (click)="routeAd()">View Admin Details</button>
+      </mat-menu>
+     </span>
+
+      <a style="color: white;" mat-list-item routerLink="page">
+        <mat-icon>outlined_flag</mat-icon> Account
+      </a>
+
+      <a style="color: white;" mat-list-item routerLink="page">
+        <mat-icon>outlined_flag</mat-icon> Dashboard
+      </a>
+
+    </mat-nav-list>
+
+
+    <div style="padding: 10px 0;text-align: center;color: white">
+      <button mat-button (click)="logOut()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Sign out</span>
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

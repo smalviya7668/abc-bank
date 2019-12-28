@@ -1,0 +1,29 @@
+.upload-list{
+    padding-left: 0;
+    background: #f4f4f4;
+    padding: 20px;
+}
+.upload-list li{
+  list-style: none;
+}
+
+.login100-more {
+  width: calc(100% - 560px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.login100-more::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.1);
+}
